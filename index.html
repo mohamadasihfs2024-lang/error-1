@@ -1,745 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>A Surprise For Tresa</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Marcellus&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-  <meta name="theme-color" content="#050505">
 
-  <title>A Surprise For Tresa ❤️</title>
-
-  <!-- ================= GOOGLE FONTS ================= -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Marcellus&family=Jost:wght@200;300;400;500&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- ================= MAIN CSS ================= -->
-  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="locked">
 
-  <!-- ================= BACKGROUND CANVAS ================= -->
-  <canvas id="bg-canvas"></canvas>
+<canvas id="bg-canvas"></canvas>
+<canvas id="confetti-canvas"></canvas>
+<div class="flash-overlay" id="flashOverlay"></div>
 
-  <!-- ================= CONFETTI ================= -->
-  <canvas id="confetti-canvas"></canvas>
+<!-- ===================== SCENE 1 : INTRO ===================== -->
+<section class="scene" id="scene-intro">
+  <p class="eyebrow glow-word" id="i-eyebrow" style="margin-bottom:1.4rem;">for tresa</p>
+  <p class="line1 glow-word" id="i-line1">I made something special for you&hellip;</p>
+  <p class="line2 glow-word" id="i-line2">But you have to unlock it.</p>
+  <button class="lux-btn" id="openBtn">Open Your Surprise ✨</button>
+</section>
 
-  <!-- ================= FLASH EFFECT ================= -->
-  <div
-    class="flash-overlay"
-    id="flashOverlay"
-    aria-hidden="true"
-  ></div>
-
-
-  <!-- =====================================================
-       SCENE 1 : INTRO
-  ====================================================== -->
-
-  <section
-    class="scene"
-    id="scene-intro"
-    aria-label="Birthday surprise introduction"
-  >
-
-    <p
-      class="eyebrow glow-word"
-      id="i-eyebrow"
-      style="margin-bottom: 1.4rem;"
-    >
-      for tresa
-    </p>
-
-    <p
-      class="line1 glow-word"
-      id="i-line1"
-    >
-      I made something special for you&hellip;
-    </p>
-
-    <p
-      class="line2 glow-word"
-      id="i-line2"
-    >
-      But you have to unlock it.
-    </p>
-
-    <button
-      class="lux-btn"
-      id="openBtn"
-      type="button"
-    >
-      Open Your Surprise ✨
-    </button>
-
-  </section>
-
-
-  <!-- =====================================================
-       SCENE 2 : GIFT BOX
-  ====================================================== -->
-
-  <section
-    class="scene hidden"
-    id="scene-gift"
-    aria-label="Open your birthday gift"
-  >
-
-    <p
-      class="eyebrow"
-      style="margin-bottom: 2.2rem;"
-    >
-      one little surprise&hellip;
-    </p>
-
-
-    <!-- GIFT WRAPPER -->
-
-    <div
-      class="gift-wrap"
-      id="giftWrap"
-      role="button"
-      tabindex="0"
-      aria-label="Open the birthday gift"
-    >
-
-      <!-- Magical glow behind gift -->
-      <div class="gift-aura"></div>
-
-      <!-- Light explosion -->
-      <div
-        class="light-burst"
-        id="lightBurst"
-      ></div>
-
-
-      <!-- GIFT BOX -->
-
-      <div
-        class="gift-box"
-        id="giftBox"
-      >
-
-        <!-- Gift bow -->
-        <div class="gift-bow"></div>
-
-
-        <!-- Gift lid -->
-        <div
-          class="gift-lid"
-          id="giftLid"
-        >
-          <div class="gift-ribbon-h"></div>
-        </div>
-
-
-        <!-- Gift body -->
-        <div class="gift-base">
-          <div class="gift-ribbon-v"></div>
-        </div>
-
+<!-- ===================== SCENE 2 : GIFT BOX ===================== -->
+<section class="scene hidden" id="scene-gift">
+  <p class="eyebrow" style="margin-bottom:2.2rem;">one little surprise&hellip;</p>
+  <div class="gift-wrap" id="giftWrap">
+    <div class="gift-aura"></div>
+    <div class="light-burst" id="lightBurst"></div>
+    <div class="gift-box" id="giftBox">
+      <div class="gift-bow"></div>
+      <div class="gift-lid" id="giftLid">
+        <div class="gift-ribbon-h"></div>
       </div>
-
+      <div class="gift-base">
+        <div class="gift-ribbon-v"></div>
+      </div>
     </div>
-
-
-    <button
-      class="lux-btn in"
-      id="openGiftBtn"
-      type="button"
-    >
-      Open It ❤️
-    </button>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       MAIN WEBSITE
-  ====================================================== -->
-
-  <main
-    id="site"
-    class="hidden"
-  >
-
-
-    <!-- =================================================
-         HERO PHOTO REVEAL
-    ================================================== -->
-
-    <section id="hero-reveal">
-
-      <div class="thread"></div>
-
-      <div class="section-inner">
-
-        <div class="frame-wrap">
-
-          <div class="frame-rays"></div>
-
-
-          <!-- HERO PHOTO -->
-
-          <div
-            class="frame-photo"
-            id="heroFrame"
-          >
-
-            <!-- IMPORTANT:
-                 Photo is in ROOT folder -->
-            <img
-              id="heroImg"
-              src="tresa.jpg"
-              alt="Tresa"
-              loading="eager"
-            >
-
-          </div>
-
-
-          <!-- Floating stars -->
-
-          <span
-            class="scatter-mark"
-            style="
-              top:-18px;
-              left:-10px;
-              font-size:1.2rem;
-            "
-          >
-            ✦
-          </span>
-
-
-          <span
-            class="scatter-mark"
-            style="
-              top:-6px;
-              right:-16px;
-              font-size:1rem;
-              animation-delay:.6s;
-            "
-          >
-            ✨
-          </span>
-
-
-          <span
-            class="scatter-mark"
-            style="
-              bottom:6%;
-              left:-20px;
-              font-size:.9rem;
-              animation-delay:1.2s;
-            "
-          >
-            ✦
-          </span>
-
-
-          <span
-            class="scatter-mark"
-            style="
-              bottom:-10px;
-              right:-8px;
-              font-size:1.1rem;
-              animation-delay:1.8s;
-            "
-          >
-            ✨
-          </span>
-
-        </div>
-
-
-        <!-- Birthday heading -->
-
-        <h1
-          class="hero-heading"
-          id="heroHeading"
-        >
-          Happy Birthday
-        </h1>
-
-
-        <!-- Name -->
-
-        <p
-          class="hero-name"
-          id="heroName"
-        >
-          Tresa ❤️
-        </p>
-
-
-        <!-- Small message -->
-
-        <p
-          class="hero-tag"
-          id="heroTag"
-        >
-          A little surprise, made just for you.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         PERSONAL MESSAGE
-    ================================================== -->
-
-    <section id="message-section">
-
-      <div
-        class="section-inner reveal"
-      >
-
-        <p
-          class="eyebrow"
-          style="margin-bottom:1rem;"
-        >
-          happy birthday, tresa ❤️
-        </p>
-
-
-        <h2>
-          A few words for you
-        </h2>
-
-
-        <!-- Typewriter message -->
-
-        <div
-          class="typewriter-box"
-          id="typewriterBox"
-        >
-          <span class="caret"></span>
-        </div>
-
-
-        <button
-          class="lux-btn more-btn in"
-          id="moreBtn"
-          type="button"
-        >
-          There's More... ↓
-        </button>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         GALLERY
-    ================================================== -->
-
-    <section id="gallery-section">
-
-      <div
-        class="section-inner reveal"
-      >
-
-        <p
-          class="eyebrow"
-          style="margin-bottom:1rem;"
-        >
-          a little moment of magic
-        </p>
-
-
-        <h2>
-          One picture. A thousand memories.
-        </h2>
-
-
-        <div class="gallery-stage">
-
-
-          <!-- Blurred background -->
-
-          <div class="gallery-blur-layer">
-
-            <img
-              src="tresa.jpg"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <!-- Main image -->
-
-          <div class="gallery-main">
-
-            <img
-              src="tresa.jpg"
-              alt="Beautiful memory of Tresa"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <!-- Polaroid -->
-
-          <figure class="polaroid">
-
-            <img
-              src="tresa.jpg"
-              alt="Tresa"
-              loading="lazy"
-            >
-
-            <figcaption id="galleryCaption">
-              A beautiful memory ❤️
-            </figcaption>
-
-          </figure>
-
-        </div>
-
-
-        <p class="gallery-caption">
-          More memories coming soon &mdash;
-          this page grows with every photo we add.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         TIMELINE
-    ================================================== -->
-
-    <section id="timeline-section">
-
-      <div class="section-inner">
-
-        <p
-          class="eyebrow reveal"
-          style="margin-bottom:1rem;"
-        >
-          our little story
-        </p>
-
-
-        <h2 class="reveal">
-          The story so far
-        </h2>
-
-
-        <!-- JavaScript will generate timeline -->
-
-        <div
-          class="timeline"
-          id="timelineList"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         THINGS I NEVER SAID
-    ================================================== -->
-
-    <section id="never-said-section">
-
-      <div class="section-inner">
-
-        <p
-          class="eyebrow reveal"
-          style="margin-bottom:.5rem;"
-        >
-          things i never said&hellip;
-        </p>
-
-
-        <!-- JavaScript will generate messages -->
-
-        <div
-          id="neverSaidList"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         FINAL SURPRISE
-    ================================================== -->
-
-    <section id="final-surprise-section">
-
-      <div
-        class="section-inner"
-        id="finalSurpriseInner"
-      >
-
-
-        <p
-          class="fs-line"
-          id="fsLine1"
-        >
-          Wait&hellip;
-        </p>
-
-
-        <p
-          class="fs-line"
-          id="fsLine2"
-        >
-          There's one last thing.
-        </p>
-
-
-        <p
-          class="fs-line"
-          id="fsLine3"
-        >
-          Close your eyes for a second&hellip;
-        </p>
-
-
-        <!-- Countdown -->
-
-        <div
-          class="countdown-num"
-          id="countdownNum"
-        ></div>
-
-
-        <!-- Final birthday message -->
-
-        <h1
-          class="final-headline"
-          id="finalHeadline"
-        >
-          Happy Birthday,<br>
-          Tresa ❤️
-        </h1>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         LETTER
-    ================================================== -->
-
-    <section id="letter-section">
-
-      <div
-        class="section-inner reveal"
-      >
-
-        <p
-          class="eyebrow"
-          style="margin-bottom:1rem;"
-        >
-          a letter for you
-        </p>
-
-
-        <h2>
-          One more thing&hellip;
-        </h2>
-
-
-        <!-- Envelope -->
-
-        <div
-          class="envelope"
-          id="envelope"
-          role="button"
-          tabindex="0"
-          aria-label="Open your birthday letter"
-        >
-
-          <div class="env-body"></div>
-
-
-          <div class="letter-paper">
-
-            <div
-              class="letter-paper-inner"
-              id="letterText"
-            ></div>
-
-          </div>
-
-
-          <div class="env-seal">
-            T
-          </div>
-
-
-          <div class="env-flap"></div>
-
-
-          <div class="env-label">
-            tap to open
-          </div>
-
-        </div>
-
-
-        <p class="letter-hint">
-          Tap the envelope
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         FOOTER
-    ================================================== -->
-
-    <footer>
-      made with love, just for you. ❤️
-    </footer>
-
-
-  </main>
-
-
-
-  <!-- =====================================================
-       MUSIC PLAYER
-  ====================================================== -->
-
-  <div
-    id="music-player"
-    aria-label="Music player"
-  >
-
-    <!-- Play / Pause -->
-
-    <button
-      class="mp-btn"
-      id="mpPlayPause"
-      type="button"
-      aria-label="Play or pause music"
-    >
-      ▶
-    </button>
-
-
-    <!-- Animated bars -->
-
-    <div
-      class="mp-bars"
-      id="mpBars"
-      aria-hidden="true"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-
-    <span class="mp-label">
-      Now Playing
-    </span>
-
-
-    <!-- Mute -->
-
-    <button
-      class="mp-btn"
-      id="mpMute"
-      type="button"
-      aria-label="Mute or unmute music"
-    >
-      🔊
-    </button>
-
   </div>
+  <button class="lux-btn in" id="openGiftBtn">Open It ❤️</button>
+</section>
 
+<!-- ===================== MAIN SITE ===================== -->
+<main id="site" class="hidden">
 
+  <!-- HERO REVEAL -->
+  <section id="hero-reveal">
+    <div class="thread"></div>
+    <div class="section-inner">
+      <div class="frame-wrap">
+        <div class="frame-rays"></div>
+        <div class="frame-photo" id="heroFrame">
+          <img id="heroImg" src="images/tresa.jpg" alt="Tresa">
+        </div>
+        <span class="scatter-mark" style="top:-18px;left:-10px;font-size:1.2rem;">✦</span>
+        <span class="scatter-mark" style="top:-6px;right:-16px;font-size:1rem;animation-delay:.6s;">✨</span>
+        <span class="scatter-mark" style="bottom:6%;left:-20px;font-size:.9rem;animation-delay:1.2s;">✦</span>
+        <span class="scatter-mark" style="bottom:-10px;right:-8px;font-size:1.1rem;animation-delay:1.8s;">✨</span>
+      </div>
+      <h1 class="hero-heading" id="heroHeading">Happy Birthday</h1>
+      <p class="hero-name" id="heroName">Tresa ❤️</p>
+      <p class="hero-tag" id="heroTag">A little surprise, made just for you.</p>
+    </div>
+  </section>
 
-  <!-- =====================================================
-       AUDIO
+  <!-- MESSAGE -->
+  <section id="message-section">
+    <div class="section-inner reveal">
+      <p class="eyebrow" style="margin-bottom:1rem;">happy birthday, tresa ❤️</p>
+      <h2>A few words for you</h2>
+      <div class="typewriter-box" id="typewriterBox"><span class="caret"></span></div>
+      <button class="lux-btn more-btn in" id="moreBtn">There's More... ↓</button>
+    </div>
+  </section>
 
-       IMPORTANT:
-       happy-birthday.mp3 is in the ROOT of the repository.
-  ====================================================== -->
+  <!-- GALLERY -->
+  <section id="gallery-section">
+    <div class="section-inner reveal">
+      <p class="eyebrow" style="margin-bottom:1rem;">a little moment of magic</p>
+      <h2>One picture. A thousand memories.</h2>
+      <div class="gallery-stage">
+        <div class="gallery-blur-layer"><img src="images/tresa.jpg" alt=""></div>
+        <div class="gallery-main"><img src="images/tresa.jpg" alt="Tresa"></div>
+        <figure class="polaroid">
+          <img src="tresa.jpg" alt="Tresa">
+          <figcaption id="galleryCaption">A beautiful memory ❤️</figcaption>
+        </figure>
+      </div>
+      <p class="gallery-caption">More memories coming soon &mdash; this page grows with every photo we add.</p>
+    </div>
+  </section>
 
-  <audio
-    id="bgMusic"
-    loop
-    preload="auto"
-  >
+  <!-- TIMELINE -->
+  <section id="timeline-section">
+    <div class="section-inner">
+      <p class="eyebrow reveal" style="margin-bottom:1rem;">our little story</p>
+      <h2 class="reveal">The story so far</h2>
+      <div class="timeline" id="timelineList"></div>
+    </div>
+  </section>
 
-    <source
-      src="happy-birthday.mp3"
-      type="audio/mpeg"
-    >
+  <!-- THINGS NEVER SAID -->
+  <section id="never-said-section">
+    <div class="section-inner">
+      <p class="eyebrow reveal" style="margin-bottom:.5rem;">things i never said&hellip;</p>
+      <div id="neverSaidList"></div>
+    </div>
+  </section>
 
-    Your browser does not support audio playback.
+  <!-- FINAL SURPRISE -->
+  <section id="final-surprise-section">
+    <div class="section-inner" id="finalSurpriseInner">
+      <p class="fs-line" id="fsLine1">Wait&hellip;</p>
+      <p class="fs-line" id="fsLine2">There's one last thing.</p>
+      <p class="fs-line" id="fsLine3">Close your eyes for a second&hellip;</p>
+      <div class="countdown-num" id="countdownNum"></div>
+      <h1 class="final-headline" id="finalHeadline">Happy Birthday,<br>Tresa ❤️</h1>
+    </div>
+  </section>
 
-  </audio>
+  <!-- LETTER -->
+  <section id="letter-section">
+    <div class="section-inner reveal">
+      <p class="eyebrow" style="margin-bottom:1rem;">a letter for you</p>
+      <h2>One more thing&hellip;</h2>
+      <div class="envelope" id="envelope">
+        <div class="env-body"></div>
+        <div class="letter-paper"><div class="letter-paper-inner" id="letterText"></div></div>
+        <div class="env-seal">T</div>
+        <div class="env-flap"></div>
+        <div class="env-label">tap to open</div>
+      </div>
+      <p class="letter-hint">Tap the envelope</p>
+    </div>
+  </section>
 
+  <footer>made with love, just for you.</footer>
+</main>
 
+<!-- MUSIC PLAYER -->
+<div id="music-player">
+  <button class="mp-btn" id="mpPlayPause" aria-label="Play or pause music">❚❚</button>
+  <div class="mp-bars" id="mpBars"><span></span><span></span><span></span><span></span></div>
+  <span class="mp-label">Now Playing</span>
+  <button class="mp-btn" id="mpMute" aria-label="Mute or unmute music">🔊</button>
+</div>
+<audio id="bgMusic" loop preload="auto">
+  <source src="happy-birthday.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- =====================================================
-       EXTERNAL LIBRARIES
-  ====================================================== -->
-
-  <!-- GSAP -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-  ></script>
-
-
-  <!-- Canvas Confetti -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"
-  ></script>
-
-
-
-  <!-- =====================================================
-       YOUR JAVASCRIPT
-  ====================================================== -->
-
-  <!-- Birthday data -->
-  <script src="js/data/birthdayData.js"></script>
-
-  <!-- Main application -->
-  <script src="js/app.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+<script src="js/data/birthdayData.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
